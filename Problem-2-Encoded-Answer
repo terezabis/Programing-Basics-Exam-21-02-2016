@@ -1,0 +1,61 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Problem_02
+{
+    class EncodedAnswer
+    {
+        static void Main()
+        {
+            int number = int.Parse(Console.ReadLine());
+            uint[] arrayAnswer = new uint[number];
+            int countA = 0;
+            int countB = 0;
+            int countC = 0;
+            int countD = 0;
+
+            for (int i = 0; i < number; i++)
+            {
+                arrayAnswer[i] = uint.Parse(Console.ReadLine());
+            }
+            uint remainder = 0;
+            string[] newArrayLetters = new string[number];
+            for (int i = 0; i < number; i++)
+            {
+                remainder = arrayAnswer[i] % 4;
+                switch (remainder)
+                {
+                    case 0:
+                        newArrayLetters[i] = "a";
+                        countA++;
+                        break;
+                    case 1:
+                        newArrayLetters[i] = "b";
+                        countB++;
+                        break;
+                    case 2:
+                        newArrayLetters[i] = "c";
+                        countC++;
+                        break;
+                    default:
+                        newArrayLetters[i] = "d";
+                        countD++;
+                        break;
+                }
+            }
+            for (int i = 0; i < number; i++)
+            {
+                Console.Write("{0} ", newArrayLetters[i]);
+            }
+            Console.WriteLine();
+            Console.WriteLine("Answer A: {0}", countA);
+            Console.WriteLine("Answer B: {0}", countB);
+            Console.WriteLine("Answer C: {0}", countC);
+            Console.WriteLine("Answer D: {0}", countD);
+
+        }
+    }
+}
