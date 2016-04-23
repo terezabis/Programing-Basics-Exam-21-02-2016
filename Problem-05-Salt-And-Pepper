@@ -1,0 +1,79 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Problem_05
+{
+    class SaltAndPepper
+    {
+        static void Main()
+        {
+            ulong number = ulong.Parse(Console.ReadLine());
+            string numberString = Convert.ToString((long)number, 2).PadLeft(64, '0');
+            char[] newNumberArray = numberString.ToCharArray();
+            Array.Reverse(newNumberArray);
+
+            string commandLine = Console.ReadLine();
+            string position = "";
+            int pos = 0;
+            string condit = "";
+            string[] command = new string[2];
+
+            while (commandLine != "end")
+            {
+                command = commandLine.Split();
+                for (int i = 0; i < command.Length; i++)
+                {
+                    if (i % 2 == 0)
+                    {
+                        condit = command[i];
+                    }
+                    else
+                    {
+                        position = command[i];
+                        pos = int.Parse(position.ToString());
+                    }
+                }
+                if (condit == "salt") // 1->0
+                {
+                    for (int i = 0; i < newNumberArray.Length; i++)
+                    {
+                        if (i % pos == 0 && newNumberArray[i] == '1')
+                        {
+                            newNumberArray[i] = '0';
+                        }
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < newNumberArray.Length; i++)
+                    {
+                        if (i % pos == 0 && newNumberArray[i] == '0')
+                        {
+                            newNumberArray[i] = '1';
+                        }
+                    }
+                }
+                commandLine = Console.ReadLine();
+            }
+            //Array.Reverse(newNumberArray);
+            ulong[] intNewNumberArray = new ulong[newNumberArray.Length];
+
+            for (int i = 0; i < newNumberArray.Length; i++)
+            {
+                intNewNumberArray[i] = ulong.Parse(newNumberArray[i].ToString());
+            }
+
+            ulong sum = 0;
+            for (int j = 0; j < newNumberArray.Length; j++)
+            {
+                if (intNewNumberArray[j] == 1)
+                    sum = sum + (ulong)(Math.Pow(2, j));
+            }
+            Console.WriteLine(sum);
+        }
+    }
+}
