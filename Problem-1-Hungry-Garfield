@@ -1,0 +1,41 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Problem_01
+{
+    class HungryGarfield
+    {
+        static void Main()
+        {
+            decimal money = decimal.Parse(Console.ReadLine());
+            decimal dollarExchange = decimal.Parse(Console.ReadLine());
+            decimal pizzaPrice = decimal.Parse(Console.ReadLine());
+            decimal lasagnaPrice = decimal.Parse(Console.ReadLine());
+            decimal sandwichPrice = decimal.Parse(Console.ReadLine());
+            decimal pizzaQuantity = decimal.Parse(Console.ReadLine());
+            decimal lasagnaQuantity = decimal.Parse(Console.ReadLine());
+            decimal sandwichQuantity = decimal.Parse(Console.ReadLine());
+
+            decimal pizza = pizzaQuantity * (pizzaPrice / dollarExchange);
+            decimal lasagna = lasagnaQuantity * (lasagnaPrice / dollarExchange);
+            decimal sandwich = sandwichQuantity * (sandwichPrice / dollarExchange);
+            decimal moneyLeft = 0;
+
+            decimal sum = pizza + lasagna + sandwich;
+
+            if (money >= sum)
+            {
+                moneyLeft = money - sum;
+                Console.WriteLine("Garfield is well fed, John is awesome. Money left: ${0:F2}.", moneyLeft);
+            }
+            else
+            {
+                moneyLeft = sum - money;
+                Console.WriteLine("Garfield is hungry. John is a badass. Money needed: ${0:F2}.", moneyLeft);
+            }
+        }
+    }
+}
